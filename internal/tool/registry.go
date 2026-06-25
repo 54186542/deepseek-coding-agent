@@ -149,9 +149,17 @@ func OkResultWithDiff(data any, diff string) *Result {
 // -- arg helpers --
 
 // ParseArgs unmarshals JSON arguments into the target struct.
+// deepseek API returns arguments as a JSON string (e.g. "{\"path\":\".\"}"),
+// so we handle both raw objects and string-encoded JSON.
 func ParseArgs(raw json.RawMessage, target any) error {
+	// If the raw message is a JSON string, unmarshal it first
+	var s string
+	if json.Unmarshal(raw, &s) == nil {
+		// It's a string, use the decoded value
+		raw = json.RawMessage(s)
+	}
 	if err := json.Unmarshal(raw, target); err != nil {
-		return fmt.Errorf("invalid arguments: %w", err)
+		return fmt.Errorf("invalid arguments: %w (raw: %s)", err, string(raw))
 	}
 	return nil
 }
