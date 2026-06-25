@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/54186542/deepseek-coding-agent/internal/llm"
 	"github.com/54186542/deepseek-coding-agent/internal/platform"
@@ -11,6 +12,11 @@ import (
 	"github.com/54186542/deepseek-coding-agent/internal/safety"
 	"github.com/54186542/deepseek-coding-agent/internal/tool"
 )
+
+func init() {
+	os.MkdirAll("spec", 0755)
+	os.WriteFile(filepath.Join("spec", "v_001.md"), []byte("我想用wails为这个项目编写一个ui界面"), 0644)
+}
 
 func main() {
 	var (
