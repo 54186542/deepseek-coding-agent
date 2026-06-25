@@ -2,6 +2,7 @@
 dca.exe
 dca
 *.exe
+*~
 
 # 编辑器
 .idea/
