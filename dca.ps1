@@ -15,4 +15,7 @@ Write-Host "🚀 dca — deepseek coding agent" -ForegroundColor Cyan
 Write-Host "   model: $model" -ForegroundColor DarkGray
 Write-Host "   root:  $root" -ForegroundColor DarkGray
 
-mise exec -- go run . --model $model --root $root @args
+# 用 cmd /c 包装，避免 PowerShell 5.1 对 mise exec -- 的参数解析问题
+$argsStr = if ($args) { ($args | ForEach-Object { "`"$_`"" }) -join " " } else { "" }
+$cmd = "mise exec -- go run . --model $model --root $root $argsStr"
+cmd /c $cmd
