@@ -8,7 +8,7 @@ if (-not $env:DEEPSEEK_API_KEY) {
 }
 
 # 默认模型和根目录
-$model = "deepseek-flash-v4"
+$model = "deepseek-v4-flash"
 $root = (Get-Location).Path
 
 Write-Host "🚀 dca — deepseek coding agent" -ForegroundColor Cyan

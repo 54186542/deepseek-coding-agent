@@ -52,7 +52,7 @@ func (s *Sandbox) Clean(path string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("rel path %s: %w", path, err)
 	}
-	if strings.HasPrefix(rel, "..") || rel == "." {
+	if strings.HasPrefix(rel, "..") {
 		return "", fmt.Errorf("path %s is outside project root %s", path, s.ProjectRoot)
 	}
 

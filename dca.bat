@@ -13,7 +13,7 @@ if not defined DEEPSEEK_API_KEY (
     exit /b 1
 )
 
-set "MODEL=deepseek-flash-v4"
+set "MODEL=deepseek-v4-flash"
 set "ROOT=%CD%"
 
 echo [dca] model: %MODEL%
